@@ -44,49 +44,46 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	//var React = require('react');
-
 	"use strict";
 
-	var Timer = React.createClass({
-	  displayName: "Timer",
+	var TimerExample = React.createClass({
+	    displayName: "TimerExample",
 
-	  getInitalState: function getInitalState() {
-	    //when object is created, elapsed time is 0;
-	    //this.setState({elapsedTime: 0});
-	    return { elapsed: 0 };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.timer = setInterval(this.tick, 50);
-	  },
-	  componenetWillUnmount: function componenetWillUnmount() {
-	    clearInterval(this.timer);
-	  },
-	  tick: function tick() {
-	    this.setState({ elapsed: new Date() - this.props.start });
-	  },
+	    getInitialState: function getInitialState() {
 
-	  render: function render() {
+	        return { elapsed: 0 };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.timer = setInterval(this.tick, 50);
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	        clearInterval(this.timer);
+	    },
+	    tick: function tick() {
+	        this.setState({ elapsed: new Date() - this.props.start });
+	    },
 
-	    var elapsed = Math.round(this.state.elapsed / 100);
-	    var seconds = (elapsed / 10).toFixed(1);
+	    render: function render() {
 
-	    return React.createElement(
-	      "p",
-	      null,
-	      "This timer was started ",
-	      React.createElement(
-	        "b",
-	        null,
-	        seconds,
-	        " seconds"
-	      ),
-	      " ago"
-	    );
-	  }
+	        var elapsed = Math.round(this.state.elapsed / 100);
+	        var seconds = (elapsed / 10).toFixed(1);
+
+	        return React.createElement(
+	            "p",
+	            null,
+	            "This example was started ",
+	            React.createElement(
+	                "b",
+	                null,
+	                seconds,
+	                " seconds"
+	            ),
+	            " ago."
+	        );
+	    }
 	});
 
-	React.render(React.createElement(Timer, { start: Date.now() }), document.body);
+	React.render(React.createElement(TimerExample, { start: Date.now() }), document.body);
 
 /***/ }
 /******/ ]);
